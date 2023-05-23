@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-       registry = "087019994649.dkr.ecr.ap-southeast-1.amazonaws.com/testrepo:$BUILD_NUMBER"
+       registry = "123456889088.dkr.ecr.ap-southeast-1.amazonaws.com/testrepo:$BUILD_NUMBER"
     }
     
    // cloning repository 
@@ -21,7 +21,7 @@ pipeline {
         sh '''
            set +x
           
-           aws ecr get-login-password --region ap-southeast-1 --profile terraformadmin | docker login --username AWS --password-stdin 087019994649.dkr.ecr.ap-southeast-1.amazonaws.com
+           aws ecr get-login-password --region ap-southeast-1 --profile terraformadmin | docker login --username AWS --password-stdin 123456889088.dkr.ecr.ap-southeast-1.amazonaws.com
            echo "login success"
         '''
       }
@@ -33,7 +33,7 @@ stage('Building image'){
       steps {
         sh '''
              # echo "$registry"
-               docker build --no-cache -t 087019994649.dkr.ecr.ap-southeast-1.amazonaws.com/testrepo:$BUILD_NUMBER .
+               docker build --no-cache -t 123456889088.dkr.ecr.ap-southeast-1.amazonaws.com/testrepo:$BUILD_NUMBER .
              echo "done"
         '''
       }
@@ -45,7 +45,7 @@ stage('Building image'){
       steps {
         sh '''
            set +x
-           docker push 087019994649.dkr.ecr.ap-southeast-1.amazonaws.com/testrepo:$BUILD_NUMBER
+           docker push 123456889088.dkr.ecr.ap-southeast-1.amazonaws.com/testrepo:$BUILD_NUMBER
         '''
       }
     }
@@ -56,7 +56,7 @@ stage('Building image'){
       steps {
        sh '''
            set +x
-           docker rmi 087019994649.dkr.ecr.ap-southeast-1.amazonaws.com/testrepo:$BUILD_NUMBER
+           docker rmi 123456889088.dkr.ecr.ap-southeast-1.amazonaws.com/testrepo:$BUILD_NUMBER
        '''
      }
     }
